@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Poker Randomizer</title>
+
+  <!-- Link to manifest.json -->
+  <link rel="manifest" href="manifest.json">
+
+  <!-- Favicon and app icons -->
+  <link rel="icon" href="icon.png" sizes="192x192" type="image/png">
+  <link rel="apple-touch-icon" href="icon-512.png" sizes="512x512">
+
+  <!-- Theme color for the PWA -->
+  <meta name="theme-color" content="#121212">
+
+  <style>
+    /* Dark mode styling */
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      background-color: #121212; /* Dark background */
+      color: #f4f4f4; /* Light text for contrast */
+      height: 100vh; /* Full-screen height */
+      overflow: hidden; /* Prevent scrolling */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .number {
+      font-size: 30px; /* Increased font size for more zoom */
+      font-weight: bold;
+      margin: 0;
+      line-height: 1; /* Remove extra spacing */
+      background: linear-gradient(90deg, #58a3cd 0%, #55cda2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-fill-color: transparent;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <!-- Placeholder number -->
+  <div class="number" id="randomNumber">-</div>
+
+  <script>
+    let autoGenerateInterval;
+
+    function generateRandom() {
+      const min = 1; // Set minimum value
+      const max = 100; // Set maximum value
+      const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+      document.getElementById('randomNumber').innerText = randomNumber;
+    }
+
+    function startAuto() {
+      const interval = 3; // Default 3 seconds for auto-generation
+      stopAuto(); // Stop any existing interval to prevent duplicates
+      autoGenerateInterval = setInterval(generateRandom, interval * 1000);
+    }
+
+    function stopAuto() {
+      clearInterval(autoGenerateInterval);
+    }
+
+    window.onload = () => {
+      document.getElementById('randomNumber').innerText = "-"; // Set placeholder
+      startAuto(); // Automatically start auto-generation
+    };
+  </script>
+</body>
+</html>

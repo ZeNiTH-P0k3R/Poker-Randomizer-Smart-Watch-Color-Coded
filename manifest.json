@@ -1,0 +1,22 @@
+{
+  "name": "Poker Randomizer",
+  "short_name": "Click to Randomize",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#007bff",
+  "description": "A simple poker randomizer for smartwatches (Galaxy Watch 7) that rolls a number between 1-100 on click.",
+  "icons": [
+    {
+      "src": "icon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
