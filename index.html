@@ -16,25 +16,24 @@
   <meta name="theme-color" content="#121212">
 
   <style>
-    /* Dark mode styling */
     body {
       font-family: Arial, sans-serif;
       text-align: center;
       margin: 0;
-      background-color: #121212; /* Dark background */
-      color: #f4f4f4; /* Light text for contrast */
-      height: 100vh; /* Full-screen height */
-      overflow: hidden; /* Prevent scrolling */
+      background-color: #121212;
+      color: #f4f4f4;
+      height: 100vh;
+      overflow: hidden;
       display: flex;
       justify-content: center;
       align-items: center;
     }
 
     .number {
-      font-size: 30px; /* Increased font size for more zoom */
+      font-size: 30px;
       font-weight: bold;
       margin: 0;
-      line-height: 1; /* Remove extra spacing */
+      line-height: 1;
       background: linear-gradient(90deg, #58a3cd 0%, #55cda2 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -48,22 +47,21 @@
   </style>
 </head>
 <body>
-  <!-- Placeholder number -->
   <div class="number" id="randomNumber">-</div>
 
   <script>
     let autoGenerateInterval;
 
     function generateRandom() {
-      const min = 1; // Set minimum value
-      const max = 100; // Set maximum value
+      const min = 1;
+      const max = 100;
       const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
       document.getElementById('randomNumber').innerText = randomNumber;
     }
 
     function startAuto() {
-      const interval = 3; // Default 3 seconds for auto-generation
-      stopAuto(); // Stop any existing interval to prevent duplicates
+      const interval = 3;
+      stopAuto();
       autoGenerateInterval = setInterval(generateRandom, interval * 1000);
     }
 
@@ -71,9 +69,31 @@
       clearInterval(autoGenerateInterval);
     }
 
+    // Wake Lock API to prevent screen from idling
+    let wakeLock = null;
+
+    async function requestWakeLock() {
+      try {
+        wakeLock = await navigator.wakeLock.request('screen');
+        console.log('Wake Lock is active');
+        wakeLock.addEventListener('release', () => {
+          console.log('Wake Lock was released');
+        });
+      } catch (err) {
+        console.error(`${err.name}, ${err.message}`);
+      }
+    }
+
+    document.addEventListener('visibilitychange', () => {
+      if (wakeLock !== null && document.visibilityState === 'visible') {
+        requestWakeLock();
+      }
+    });
+
     window.onload = () => {
-      document.getElementById('randomNumber').innerText = "-"; // Set placeholder
-      startAuto(); // Automatically start auto-generation
+      document.getElementById('randomNumber').innerText = "-";
+      startAuto();
+      requestWakeLock(); // activate wake lock when page loads
     };
   </script>
 </body>
