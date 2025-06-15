@@ -34,11 +34,22 @@
       font-weight: bold;
       margin: 0;
       line-height: 1;
-      background: linear-gradient(90deg, #58a3cd 0%, #55cda2 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      text-fill-color: transparent;
+    }
+
+    .green {
+      color: #00FF00;
+    }
+
+    .yellow {
+      color: #FFFF00;
+    }
+
+    .orange {
+      color: #FFA500;
+    }
+
+    .red {
+      color: #FF0000;
     }
 
     .hidden {
@@ -56,7 +67,23 @@
       const min = 1;
       const max = 100;
       const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
-      document.getElementById('randomNumber').innerText = randomNumber;
+      const display = document.getElementById('randomNumber');
+
+      // Remove previous color classes
+      display.classList.remove('green', 'yellow', 'orange', 'red');
+
+      // Apply appropriate color class
+      if (randomNumber <= 25) {
+        display.classList.add('green');
+      } else if (randomNumber <= 50) {
+        display.classList.add('yellow');
+      } else if (randomNumber <= 75) {
+        display.classList.add('orange');
+      } else {
+        display.classList.add('red');
+      }
+
+      display.innerText = randomNumber;
     }
 
     function startAuto() {
