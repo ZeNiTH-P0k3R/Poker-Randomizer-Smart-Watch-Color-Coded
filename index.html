@@ -1,19 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Poker Randomizer</title>
 
   <!-- Link to manifest.json -->
-  <link rel="manifest" href="manifest.json">
-
+  <link rel="manifest" href="manifest.json" />
   <!-- Favicon and app icons -->
-  <link rel="icon" href="icon.png" sizes="192x192" type="image/png">
-  <link rel="apple-touch-icon" href="icon-512.png" sizes="512x512">
-
-  <!-- Theme color for the PWA -->
-  <meta name="theme-color" content="#121212">
+  <link rel="icon" href="icon.png" sizes="192x192" type="image/png" />
+  <link rel="apple-touch-icon" href="icon-512.png" sizes="512x512" />
+  <meta name="theme-color" content="#121212" />
 
   <style>
     body {
@@ -32,24 +29,39 @@
     .number {
       font-size: 40px;
       font-weight: bold;
-      margin: 0;
       line-height: 1;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 4px solid transparent;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: border-color 0.3s ease;
+
+      background: linear-gradient(90deg, #58a3cd 0%, #55cda2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-fill-color: transparent;
+      margin: auto;
     }
 
-    .green {
-      color: #00FF00;
+    .green-border {
+      border-color: #00ff00;
     }
 
-    .yellow {
-      color: #FFFF00;
+    .yellow-border {
+      border-color: #ffff00;
     }
 
-    .orange {
-      color: #FFA500;
+    .blue-border {
+      border-color: #1e90ff;
     }
 
-    .red {
-      color: #FF0000;
+    .red-border {
+      border-color: #ff0000;
     }
 
     .hidden {
@@ -69,18 +81,18 @@
       const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
       const display = document.getElementById('randomNumber');
 
-      // Remove previous color classes
-      display.classList.remove('green', 'yellow', 'orange', 'red');
+      // Remove old border color classes
+      display.classList.remove('green-border', 'yellow-border', 'blue-border', 'red-border');
 
-      // Apply appropriate color class
+      // Assign border color based on range
       if (randomNumber <= 25) {
-        display.classList.add('green');
+        display.classList.add('green-border');
       } else if (randomNumber <= 50) {
-        display.classList.add('yellow');
+        display.classList.add('yellow-border');
       } else if (randomNumber <= 75) {
-        display.classList.add('orange');
+        display.classList.add('blue-border');
       } else {
-        display.classList.add('red');
+        display.classList.add('red-border');
       }
 
       display.innerText = randomNumber;
@@ -96,7 +108,7 @@
       clearInterval(autoGenerateInterval);
     }
 
-    // Wake Lock API to prevent screen from idling
+    // Wake Lock API
     let wakeLock = null;
 
     async function requestWakeLock() {
@@ -120,9 +132,8 @@
     window.onload = () => {
       document.getElementById('randomNumber').innerText = "-";
       startAuto();
-      requestWakeLock(); // activate wake lock when page loads
+      requestWakeLock();
     };
   </script>
 </body>
 </html>
-
