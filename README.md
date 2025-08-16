@@ -1,2 +1,2 @@
-# Poker-Randomizer-Smart-Watch-50px
-  A simple poker randomizer for smartwatches (Galaxy Watch 7). 50px
+# Poker-Randomizer-Smart-Watch-Color-Coded
+  A simple poker randomizer for smartwatches (Galaxy Watch 7). 40px
