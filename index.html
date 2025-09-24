@@ -50,12 +50,12 @@
       border-color: #00ff00;
     }
 
-    .yellow-border {
-      border-color: #ffff00;
-    }
-
     .blue-border {
       border-color: #1e90ff;
+    }
+
+    .yellow-border {
+      border-color: #ffff00;
     }
 
     .red-border {
@@ -79,16 +79,16 @@
       const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
       const display = document.getElementById('randomNumber');
 
-      display.classList.remove('green-border', 'yellow-border', 'blue-border', 'red-border');
+      display.classList.remove('green-border', 'blue-border', 'yellow-border', 'red-border');
 
       if (randomNumber <= 25) {
-        display.classList.add('green-border');
+        display.classList.add('green-border'); // Most Aggressive
       } else if (randomNumber <= 50) {
-        display.classList.add('yellow-border');
+        display.classList.add('blue-border');  // Neutral / Mixed
       } else if (randomNumber <= 75) {
-        display.classList.add('blue-border');
+        display.classList.add('yellow-border'); // Medium-Aggressive
       } else {
-        display.classList.add('red-border');
+        display.classList.add('red-border');   // Most Passive
       }
 
       display.innerText = randomNumber;
