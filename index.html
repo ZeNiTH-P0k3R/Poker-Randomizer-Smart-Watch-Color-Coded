@@ -81,13 +81,13 @@
       display.classList.remove('green-border', 'blue-border', 'yellow-border', 'red-border');
 
       if (randomNumber <= 25) {
-        display.classList.add('green-border'); // Most Aggressive
+        display.classList.add('blue-border');
       } else if (randomNumber <= 50) {
-        display.classList.add('blue-border');  // Neutral / Mixed
+        display.classList.add('green-border');
       } else if (randomNumber <= 75) {
-        display.classList.add('yellow-border'); // Medium-Aggressive
+        display.classList.add('yellow-border');
       } else {
-        display.classList.add('red-border');   // Most Passive
+        display.classList.add('red-border');
       }
 
       display.innerText = randomNumber;
@@ -130,4 +130,3 @@
   </script>
 </body>
 </html>
-
